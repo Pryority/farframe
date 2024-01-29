@@ -1,15 +1,68 @@
-# Elysia with Bun runtime
+# FarFrame
 
-## Getting Started
-To get started with this template, simply paste this command into your terminal:
-```bash
-bun create elysia ./elysia-example
+My attempt at building a Farcaster Frame. Less than 100 LOC.
+
+![Demo](./demo.png)
+
+## Made using Elysia.js
+
+```Typescript
+const app = new Elysia()
+  .use(staticPlugin())
+  .use(html())
+  .get(
+    "/",
+    () => `
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>FarFrame</title>
+        <meta property="og:title" content="Frame" />
+        <meta property="og:image" content="${BASE_URL}/public/initial.png" />
+        <meta property="fc:frame" content="vNext" />
+        <meta property="fc:frame:image" content="${BASE_URL}/public/initial.png" />
+        <meta property="fc:frame:button:1" content="Roll" />
+        <meta property="fc:frame:post_url" content="${BASE_URL}/api/frame" />
+      </head>
+      <body>
+        <h1>FarFrame</h1>
+      </body>
+    </html>`
+  )
+  .post("/api/frame", async ({ request }) => {
+    try {
+      await request.json();
+    } catch (error) {
+      return new Response(
+        JSON.stringify({ error: "Invalid JSON in request body" }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+    }
+
+    return new Response(
+      `<!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta property="fc:frame" content="vNext" />
+          <meta property="fc:frame:image" content="${BASE_URL}/public/roll.png" />
+          <meta property="fc:frame:post_url" content="${BASE_URL}/api/frame" />
+        </head>
+        </html>`,
+      {
+        status: 200,
+        headers: { "Content-Type": "text/html" },
+      }
+    );
+  })
+  .listen(PORT!);
 ```
 
-## Development
-To start the development server run:
-```bash
-bun run dev
-```
+### Inspirations
 
-Open http://localhost:3000/ with your browser to see the result.
+- [gskril's](https://github.com/gskril)[farcast-frame](https://github.com/gskril/farcaster-frame)
+- [Zizzamia's](https://github.com/Zizzamia)[a-frame-in-100-lines](https://github.com/Zizzamia/a-frame-in-100-lines)

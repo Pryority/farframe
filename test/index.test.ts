@@ -1,5 +1,5 @@
 // test/index.test.ts
-import { BASE_URL } from "@/utils";
+import { BASE_URL } from "@/constants";
 import { describe, expect, it } from "bun:test";
 import { Elysia } from "elysia";
 
