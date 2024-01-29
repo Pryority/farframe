@@ -1,14 +1,23 @@
 {
   "name": "farframe",
   "version": "1.0.50",
+  "type": "module",
+  "main": "src/index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "bun run --watch src/index.ts"
+    "dev": "bun run --watch src/index.ts",
+    "start": "bun run src/index.ts"
   },
   "dependencies": {
+    "@coinbase/onchainkit": "^0.1.5",
+    "@elysiajs/html": "^0.8.0",
+    "@elysiajs/static": "^0.8.1",
+    "@farcaster/hub-nodejs": "^0.10.21",
+    "@farcaster/hub-web": "^0.7.3",
     "elysia": "latest"
   },
   "devDependencies": {
+    "@flydotio/dockerfile": "latest",
     "bun-types": "latest"
   },
   "module": "src/index.js"
