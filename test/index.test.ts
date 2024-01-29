@@ -1,24 +1,20 @@
-// // test/index.test.ts
-// import { describe, expect, it } from "bun:test";
-// import { Elysia } from "elysia";
+// test/index.test.ts
+import { BASE_URL } from "@/utils";
+import { describe, expect, it } from "bun:test";
+import { Elysia } from "elysia";
 
-// describe("Elysia", () => {
-//   it("return a response", async () => {
-//     // Mock Farcaster Hub validation endpoint
-//     const validateMessageMock = async (messageBytes: string) => {
-//       const response = await fetch(
-//         "https://nemes.farcaster.xyz:2281/v1/validateMessage",
-//         {
-//           method: "POST",
-//           headers: {
-//             "Content-Type": "application/octet-stream",
-//           },
-//           body: Buffer.from(messageBytes, "hex"),
-//         }
-//       );
-//       return response.json();
-//     };
-
-//     expect(validateMessageMock("0x00")).toBe("d");
-//   });
-// });
+describe("FarFrame", () => {
+  it("returns a 200 response", async () => {
+    const response = await fetch("https://farframe.fly.dev/", {
+      method: "GET",
+    });
+    expect(response.status).toBe(200);
+  });
+  it("returns a the new frame", async () => {
+    const response = await fetch("https://farframe.fly.dev/api/frame", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+    });
+    expect(response.status).toBe(200);
+  });
+});
