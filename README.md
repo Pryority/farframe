@@ -64,5 +64,5 @@ const app = new Elysia()
 
 ### Inspirations
 
-- [gskril's](https://github.com/gskril)[farcast-frame](https://github.com/gskril/farcaster-frame)
-- [Zizzamia's](https://github.com/Zizzamia)[a-frame-in-100-lines](https://github.com/Zizzamia/a-frame-in-100-lines)
+- [gskril](https://github.com/gskril)'s [farcast-frame](https://github.com/gskril/farcaster-frame)
+- [Zizzamia](https://github.com/Zizzamia)'s [a-frame-in-100-lines](https://github.com/Zizzamia/a-frame-in-100-lines)
